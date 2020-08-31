@@ -1,8 +1,10 @@
 import React, { useState, useCallback } from 'react';
-import styles from './InputForm.module.css';
-import { getContacts } from '../../redux/phonebook/phonebook-selectors';
 import { useSelector, useDispatch } from 'react-redux';
+
+import { getContacts } from '../../redux/phonebook/phonebook-selectors';
 import * as contactsOperations from '../../redux/phonebook/phonebook-operations';
+
+import styles from './InputForm.module.css';
 
 
 export default function InputForm() {

@@ -1,8 +1,10 @@
 import React from 'react';
-import styles from './Phonebook.module.css';
 import { useSelector, useDispatch } from 'react-redux';
+
 import * as contactsOperations from '../../redux/phonebook/phonebook-operations';
 import { getVisibleContacts } from '../../redux/phonebook/phonebook-selectors';
+
+import styles from './Phonebook.module.css';
 
 export default function Phonebook() {
   const dispatch = useDispatch();
@@ -20,7 +22,6 @@ export default function Phonebook() {
             <span>{name} : {number}</span>
             <button type="button" className={styles.close} onClick={() => onDelete(id)}>+</button>
           </li>)
-
         ))}
       </ul>)}
     </>

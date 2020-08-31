@@ -1,7 +1,9 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+
 import authSelectors from '../../redux/auth/auth-selectors';
 import authOperations from '../../redux/auth/auth-operations';
+
 import s from './UserMenu.module.css';
 
 export default function UserMenu() {
@@ -11,6 +13,7 @@ export default function UserMenu() {
   const onLogout = () => {
     dispatch(authOperations.logout());
   }
+
   return (
     <div className={s.container}>
       <span className={s.avatar}>{userName.slice(0, 1)}</span>
