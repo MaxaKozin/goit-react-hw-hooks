@@ -1,31 +1,25 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
-import * as contactsOperations from '../../redux/phonebook/phonebook-operations';
 import { getVisibleContacts } from '../../redux/phonebook/phonebook-selectors';
+import PhonebookItem from './PhonebookItem';
 
-import styles from './Phonebook.module.css';
+import s from './Phonebook.module.css';
 
 export default function Phonebook() {
-  const dispatch = useDispatch();
   const contacts = useSelector(getVisibleContacts);
-
-  const onDelete = (id) => {
-    dispatch(contactsOperations.deleteContact(id))
-  }
 
   return (
     <>
-      {contacts && (<ul className={styles.list}>
-        {contacts.map(({ name, number, id }) => (
-          name && (<li className={styles.item} key={id}>
-            <span>{name} : {number}</span>
-            <button type="button" className={styles.close} onClick={() => onDelete(id)}>+</button>
-          </li>)
-        ))}
-      </ul>)}
+      {contacts && (
+        <ul className={s.list}>
+          {contacts.map(contact => (
+            <li className={s.item} key={contact.id}>
+              <PhonebookItem {...contact} />
+            </li>
+          ))}
+        </ul>
+      )}
     </>
-  )
+  );
 }
-
-

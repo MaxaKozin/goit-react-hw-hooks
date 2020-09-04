@@ -9,12 +9,11 @@ import authSelectors from '../../redux/auth/auth-selectors';
 import s from './Appbar.module.css';
 
 export default function Appbar() {
-  const isAuthenticated = useSelector(authSelectors.isAuthenticated)
+  const isAuthenticated = useSelector(authSelectors.isAuthenticated);
   return (
     <div className={s.appbar}>
       <Navigation />
       {!isAuthenticated ? <LoginMenu /> : <UserMenu />}
-
     </div>
   );
 }

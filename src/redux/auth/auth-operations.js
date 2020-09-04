@@ -13,16 +13,16 @@ const token = {
 };
 
 const register = userData => async dispatch => {
-  dispatch(authActions.registerRequest())
+  dispatch(authActions.registerRequest());
 
   try {
     const response = await axios.post('/users/signup', userData);
     token.set(response.data.token);
-    dispatch(authActions.registerSuccess(response.data))
+    dispatch(authActions.registerSuccess(response.data));
   } catch (error) {
-    dispatch(authActions.registerError(error.message))
+    dispatch(authActions.registerError(error.message));
   }
-}
+};
 
 const login = userData => async dispatch => {
   dispatch(authActions.loginRequest());
@@ -30,25 +30,27 @@ const login = userData => async dispatch => {
   try {
     const response = await axios.post('/users/login', userData);
     token.set(response.data.token);
-    dispatch(authActions.loginSuccess(response.data))
+    dispatch(authActions.loginSuccess(response.data));
   } catch (error) {
-    dispatch(authActions.loginError(error.message))
+    dispatch(authActions.loginError(error.message));
   }
-}
+};
 
 const logout = () => async dispatch => {
   dispatch(authActions.logoutRequest());
   try {
     await axios.post('users/logout');
     token.unset();
-    dispatch(authActions.logoutSuccess())
+    dispatch(authActions.logoutSuccess());
   } catch (error) {
-    dispatch(authActions.logoutError(error.message))
+    dispatch(authActions.logoutError(error.message));
   }
-}
+};
 
 const getCurrentUser = () => async (dispatch, getState) => {
-  const { auth: { token: persistedToken } } = getState();
+  const {
+    auth: { token: persistedToken },
+  } = getState();
 
   if (!persistedToken) {
     return;
@@ -58,10 +60,10 @@ const getCurrentUser = () => async (dispatch, getState) => {
   dispatch(authActions.getCurrentUserRequest());
   try {
     const response = await axios.get('users/current');
-    dispatch(authActions.getCurrentUserSuccess(response.data))
+    dispatch(authActions.getCurrentUserSuccess(response.data));
   } catch (error) {
-    dispatch(authActions.getCurrentUserError(error.message))
+    dispatch(authActions.getCurrentUserError(error.message));
   }
-}
+};
 
-export default { register, login, logout, getCurrentUser }
+export default { register, login, logout, getCurrentUser };

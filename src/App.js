@@ -12,12 +12,11 @@ import PrivateRoute from './components/PrivateRoute';
 import authOperations from './redux/auth/auth-operations';
 
 export default function App() {
-
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(authOperations.getCurrentUser());
-  }, [dispatch])
+  }, [dispatch]);
 
   return (
     <>
@@ -26,30 +25,16 @@ export default function App() {
         <PublicRoute exact path="/">
           <HomeView />
         </PublicRoute>
-        <PublicRoute
-          path="/signup"
-          restricted
-          redirectTo="/phonebook"
-        >
+        <PublicRoute path="/signup" restricted redirectTo="/phonebook">
           <Signup />
         </PublicRoute>
-        <PublicRoute
-          path="/login"
-          restricted
-          redirectTo="/phonebook"
-        >
+        <PublicRoute path="/login" restricted redirectTo="/phonebook">
           <Login />
         </PublicRoute>
-        <PrivateRoute
-          path="/phonebook"
-          redirectTo="/login"
-        >
+        <PrivateRoute path="/phonebook" redirectTo="/login">
           <Contacts />
         </PrivateRoute>
       </Switch>
     </>
   );
 }
-
-
-

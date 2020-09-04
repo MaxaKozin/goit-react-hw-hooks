@@ -15,6 +15,5 @@ export default function PrivateRoute({
     <Route {...routeProps}>
       {isLoggedIn ? children : <Redirect to={redirectTo} />}
     </Route>
-  )
+  );
 }
-

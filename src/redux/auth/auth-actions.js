@@ -28,5 +28,5 @@ export default {
   logoutError,
   getCurrentUserRequest,
   getCurrentUserSuccess,
-  getCurrentUserError
-}
+  getCurrentUserError,
+};

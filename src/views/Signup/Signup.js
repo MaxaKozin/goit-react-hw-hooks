@@ -12,7 +12,7 @@ export default function Signup() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const onChange = useCallback((e) => {
+  const onChange = useCallback(e => {
     const { name, value } = e.currentTarget;
     switch (name) {
       case 'name':
@@ -27,30 +27,55 @@ export default function Signup() {
       default:
         console.log(new Error());
     }
-  }, [])
+  }, []);
 
-  const handleSubmit = useCallback((e) => {
-    e.preventDefault();
-    dispatch(authOperations.register({ name, email, password }))
-  }, [dispatch, email, name, password])
+  const handleSubmit = useCallback(
+    e => {
+      e.preventDefault();
+      dispatch(authOperations.register({ name, email, password }));
+    },
+    [dispatch, email, name, password],
+  );
 
   return (
     <form className={s.form} onSubmit={handleSubmit}>
       <h2 className={s.heading}>Sign up</h2>
       <label className={s.label}>
         Name
-          <input className={s.input} type="text" name="name" autoComplete="off" placeholder="Enter your name" onChange={onChange} />
+        <input
+          className={s.input}
+          type="text"
+          name="name"
+          autoComplete="off"
+          placeholder="Enter your name"
+          onChange={onChange}
+        />
       </label>
       <label className={s.label}>
         Email
-          <input className={s.input} type="email" name="email" autoComplete="off" placeholder="Enter your e-mail" onChange={onChange} />
+        <input
+          className={s.input}
+          type="email"
+          name="email"
+          autoComplete="off"
+          placeholder="Enter your e-mail"
+          onChange={onChange}
+        />
       </label>
       <label className={s.label}>
         Password
-          <input className={s.input} type="password" name="password" autoComplete="off" placeholder="Enter your password" onChange={onChange} />
+        <input
+          className={s.input}
+          type="password"
+          name="password"
+          autoComplete="off"
+          placeholder="Enter your password"
+          onChange={onChange}
+        />
       </label>
-      <button type="submit" className={s.button}>Register</button>
+      <button type="submit" className={s.button}>
+        Register
+      </button>
     </form>
-
   );
 }
